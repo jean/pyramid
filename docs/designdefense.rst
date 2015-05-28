@@ -265,7 +265,7 @@ as comfortable with the ZCA registry API as the original developers are with
 it.  So, for the purposes of being kind to third-party :app:`Pyramid`
 framework developers in, we've drawn some lines in the sand.
 
-In all core code, We've made use of ZCA global API functions such as
+In all core code, we've made use of ZCA global API functions such as
 ``zope.component.getUtility`` and ``zope.component.getAdapter`` the exception
 instead of the rule.  So instead of:
 
@@ -339,7 +339,7 @@ the ZCA registry:
 - Testability.  Judicious use of the ZCA registry in framework code makes
   testing that code slightly easier.  Instead of using monkeypatching or
   other facilities to register mock objects for testing, we inject
-  dependencies via ZCA registrations and then use lookups in the code find
+  dependencies via ZCA registrations and then use lookups in the code to find
   our mock objects.
 
 - Speed.  The ZCA registry is very fast for a specific set of complex lookup
@@ -1205,7 +1205,7 @@ happen again, especially if you are working on a project with other people
 who haven't yet internalized the lessons you learned while you stepped
 through module-scope code using ``pdb``.  This is a really pretty poor
 situation to find yourself in as an application developer: you probably
-didn't even know your or your team signed up for the job, because the
+didn't even know you or your team signed up for the job, because the
 documentation offered by decorator-based microframeworks don't warn you about
 it.
 
