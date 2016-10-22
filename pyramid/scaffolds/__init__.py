@@ -4,7 +4,7 @@ from textwrap import dedent
 
 from pyramid.compat import native_
 
-from pyramid.scaffolds.template import Template # API
+from pyramid.scaffolds.template import Template  # API
 
 class PyramidTemplate(Template):
     """
@@ -18,10 +18,6 @@ class PyramidTemplate(Template):
         misnamings (such as naming a package "site" or naming a package
         logger "root".
         """
-        if vars['package'] == 'site':
-            raise ValueError('Sorry, you may not name your package "site". '
-                             'The package name "site" has a special meaning in '
-                             'Python.  Please name it anything except "site".')
         vars['random_string'] = native_(binascii.hexlify(os.urandom(20)))
         package_logger = vars['package']
         if package_logger == 'root':
@@ -39,11 +35,10 @@ class PyramidTemplate(Template):
         msg = dedent(
             """
             %(separator)s
-            Tutorials: http://docs.pylonsproject.org/projects/pyramid_tutorials
-            Documentation: http://docs.pylonsproject.org/projects/pyramid
-
-            Twitter (tips & updates): http://twitter.com/pylons
-            Mailing List: http://groups.google.com/group/pylons-discuss
+            Tutorials:     http://docs.pylonsproject.org/projects/pyramid_tutorials/en/latest/
+            Documentation: http://docs.pylonsproject.org/projects/pyramid/en/latest/
+            Twitter:       https://twitter.com/trypyramid
+            Mailing List:  https://groups.google.com/forum/#!forum/pylons-discuss
 
             Welcome to Pyramid.  Sorry for the convenience.
             %(separator)s
@@ -57,12 +52,14 @@ class PyramidTemplate(Template):
 
 class StarterProjectTemplate(PyramidTemplate):
     _template_dir = 'starter'
-    summary = 'Pyramid starter project'
+    summary = 'Pyramid starter project using URL dispatch and Chameleon'
 
 class ZODBProjectTemplate(PyramidTemplate):
     _template_dir = 'zodb'
-    summary = 'Pyramid ZODB project using traversal'
+    summary = 'Pyramid project using ZODB, traversal, and Chameleon'
 
 class AlchemyProjectTemplate(PyramidTemplate):
     _template_dir = 'alchemy'
-    summary = 'Pyramid SQLAlchemy project using url dispatch'
+    summary = (
+        'Pyramid project using SQLAlchemy, SQLite, URL dispatch, and '
+        'Jinja2')

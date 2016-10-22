@@ -1,7 +1,7 @@
 Copyright, Trademarks, and Attributions
 =======================================
 
-*The Pyramid Web Framework, Version 1.1*
+"The Pyramid Web Framework, Version |version|"
 
 by Chris McDonough
 
@@ -39,7 +39,7 @@ any trademark or service mark.
 
 Every effort has been made to make this book as complete and as
 accurate as possible, but no warranty or fitness is implied.  The
-information provided is on as "as-is" basis.  The author and the
+information provided is on an "as-is" basis.  The author and the
 publisher shall have neither liability nor responsibility to any
 person or entity with respect to any loss or damages arising from the
 information contained in this book.  No patent liability is assumed
@@ -63,7 +63,7 @@ Contributors:
   GitHub.
 
 Cover Designer:
-   Hugues Laflamme of `Kemeneur <http://www.kemeneur.com/>`_.
+   Hugues Laflamme of Kemeneur.
 
 Used with permission:
 
@@ -80,8 +80,8 @@ Print Production
 ----------------
 
 The print version of this book was produced using the `Sphinx
-<http://sphinx.pocoo.org/>`_ documentation generation system and the
-`LaTeX <http://www.latex-project.org/>`_ typesetting system.
+<http://www.sphinx-doc.org/en/stable/>`_ documentation generation system and
+the `LaTeX <http://www.latex-project.org/>`_ typesetting system.
 
 Contacting The Publisher
 ------------------------
@@ -89,16 +89,15 @@ Contacting The Publisher
 Please send documentation licensing inquiries, translation inquiries,
 and other business communications to `Agendaless Consulting
 <mailto:webmaster@agendaless.com>`_.  Please send software and other
-technical queries to the `Pylons-devel maillist
-<http://groups.google.com/group/pylons-devel>`_.
+technical queries to the `Pylons-devel mailing list
+<https://groups.google.com/forum/#!forum/pylons-devel>`_.
 
 HTML Version and Source Code
 ----------------------------
 
 An HTML version of this book is freely available via
-http://docs.pylonsproject.org
+http://docs.pylonsproject.org/projects/pyramid/en/latest/
 
 The source code for the examples used in this book are available
 within the :app:`Pyramid` software distribution, always available
 via https://github.com/Pylons/pyramid
-
