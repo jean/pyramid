@@ -328,9 +328,10 @@ the ZCA registry:
   (non-Zope) frameworks.
 
 - Testability.  Judicious use of the ZCA registry in framework code makes
-  testing that code slightly easier.  Instead of using monkeypatching or other
-  facilities to register mock objects for testing, we inject dependencies via
-  ZCA registrations, then use lookups in the code to find our mock objects.
+  testing that code slightly easier.  Instead of using monkeypatching or
+  other facilities to register mock objects for testing, we inject
+  dependencies via ZCA registrations and then use lookups in the code to find
+  our mock objects.
 
 - Speed.  The ZCA registry is very fast for a specific set of complex lookup
   scenarios that :app:`Pyramid` uses, having been optimized through the years
@@ -1167,39 +1168,41 @@ will be.
 
 The encouragement to use decorators which perform population of an external
 registry has an unintended consequence: the application developer now must
-assert ownership of every code path that executes Python module scope code.
-Module-scope code is presumed by the current crop of decorator-based
-microframeworks to execute once and only once. If it executes more than once,
-weird things will start to happen. It is up to the application developer to
-maintain this invariant. Unfortunately, in reality this is an impossible task,
-because Python programmers *do not own the module scope code path, and never
-will*. Anyone who tries to sell you on the idea that they do so is simply
-mistaken. Test runners that you may want to use to run your code's tests often
-perform imports of arbitrary code in strange orders that manifest bugs like the
-one demonstrated above. API documentation generation tools do the same. Some
-people even think it's safe to use the Python ``reload`` command, or delete
-objects from ``sys.modules``, each of which has hilarious effects when used
-against code that has import-time side effects.
+assert ownership of every codepath that executes Python module scope
+code. Module-scope code is presumed by the current crop of decorator-based
+microframeworks to execute once and only once; if it executes more than once,
+weird things will start to happen.  It is up to the application developer to
+maintain this invariant.  Unfortunately, however, in reality, this is an
+impossible task, because, Python programmers *do not own the module scope
+codepath, and never will*.  Anyone who tries to sell you on the idea that
+they do is simply mistaken.  Test runners that you may want to use to run
+your code's tests often perform imports of arbitrary code in strange orders
+that manifest bugs like the one demonstrated above.  API documentation
+generation tools do the same.  Some people even think it's safe to use the
+Python ``reload`` command or delete objects from ``sys.modules``, each of
+which has hilarious effects when used against code that has import-time side
+effects.
 
-Global registry-mutating microframework programmers therefore will at some
-point need to start reading the tea leaves about what *might* happen if module
-scope code gets executed more than once, like we do in the previous paragraph.
-When Python programmers assume they can use the module-scope code path to run
-arbitrary code (especially code which populates an external registry), and this
-assumption is challenged by reality, the application developer is often
-required to undergo a painful, meticulous debugging process to find the root
-cause of an inevitably obscure symptom. The solution is often to rearrange
-application import ordering, or move an import statement from module-scope into
-a function body. The rationale for doing so can never be expressed adequately
-in the commit message which accompanies the fix, and can't be documented
-succinctly enough for the benefit of the rest of the development team so that
-the problem never happens again. It will happen again, especially if you are
-working on a project with other people who haven't yet internalized the lessons
-you learned while you stepped through module-scope code using ``pdb``. This is
-a very poor situation in which to find yourself as an application developer:
-you probably didn't even know you or your team signed up for the job, because
-the documentation offered by decorator-based microframeworks don't warn you
-about it.
+Global-registry-mutating microframework programmers therefore will at some
+point need to start reading the tea leaves about what *might* happen if
+module scope code gets executed more than once like we do in the previous
+paragraph.  When Python programmers assume they can use the module-scope
+codepath to run arbitrary code (especially code which populates an external
+registry), and this assumption is challenged by reality, the application
+developer is often required to undergo a painful, meticulous debugging
+process to find the root cause of an inevitably obscure symptom.  The
+solution is often to rearrange application import ordering or move an import
+statement from module-scope into a function body.  The rationale for doing so
+can never be expressed adequately in the checkin message which accompanies
+the fix and can't be documented succinctly enough for the benefit of the rest
+of the development team so that the problem never happens again.  It will
+happen again, especially if you are working on a project with other people
+who haven't yet internalized the lessons you learned while you stepped
+through module-scope code using ``pdb``.  This is a really pretty poor
+situation to find yourself in as an application developer: you probably
+didn't even know you or your team signed up for the job, because the
+documentation offered by decorator-based microframeworks don't warn you about
+it.
 
 Folks who have a large investment in eager decorator-based configuration that
 populates an external data structure (such as microframework authors) may
